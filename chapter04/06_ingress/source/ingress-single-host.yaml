@@ -5,6 +5,8 @@ metadata:
   namespace: snackbar
   labels:
     project: snackbar
+  annotations:
+    kubernetes.io/ingress.class: nginx-external
 spec:
   defaultBackend:
     service:
