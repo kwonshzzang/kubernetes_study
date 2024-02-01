@@ -5,9 +5,6 @@ metadata:
   namespace: snackbar
   labels:
     project: snackbar
-  annotations:
-    kubernetes.io/ingress.class: public
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   defaultBackend:
     service:

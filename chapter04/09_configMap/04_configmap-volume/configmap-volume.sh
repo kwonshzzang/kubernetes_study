@@ -30,3 +30,21 @@ kbuectl get svc
 # server.conf에 설정한대로 nginx 웹서버가 /myapp 요청을 my-app 컨테이너로 라우팅 하는지 확인 - 포트포워딩 8080:80
 kubectl port-forward web-server 8080:80
 
+#Welcome to Version 1!
+#
+#===== Host Info =====
+#HostIP: 10.244.0.118
+#HostName: my-app
+
+# nginx 접속 로그 확인
+kubectl exec web-server -- tail -10f /var/log/nginx/host.access.log
+
+# 컨테이너의 마운팅 경로 /etc/nginx/conf.d에서 ConfigMap 파일 확인
+kubectl exec web-server -c nginx -- ls /etc/nginx/conf.d
+kubectl exec web-server -c nginx -- cat /etc/nginx/conf.d/server.conf
+
+# 파드 삭제
+kubectl delete pod web-server
+kubectl delete pod my-app
+kubectl delete svc my-app
+kubectl delete configmap nginx-config
